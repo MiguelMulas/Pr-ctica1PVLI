@@ -160,7 +160,7 @@ describe('Entities library', function () {
         });
       });
 
-      xit('does not applie an effect if the effect comes from a foe but ' +
+      it('does not applie an effect if the effect comes from a foe but ' +
       'defense roll passed.',
       function () {
         var isAlly = false;
@@ -174,7 +174,7 @@ describe('Entities library', function () {
 
     });
 
-    xit('prevents effects from changing name or weapon.', function () {
+    it('prevents effects from changing name or weapon.', function () {
       var variations = {
         name: 'Avoided',
         weapon: null
@@ -187,21 +187,21 @@ describe('Entities library', function () {
       expect(character.weapon).toBe(originalWeapon);
     });
 
-    xit('keeps mp in the range [0, maxMp].', function () {
+    it('keeps mp in the range [0, maxMp].', function () {
       character.mp = -10;
       expect(character.mp).toBe(0);
       character.mp = character.maxMp + 10;
       expect(character.mp).toBe(character.maxMp);
     });
 
-    xit('keeps hp in the range [0, maxHp].', function () {
+    it('keeps hp in the range [0, maxHp].', function () {
       character.hp = -10;
       expect(character.hp).toBe(0);
       character.hp = character.maxMp + 10;
       expect(character.hp).toBe(character.maxHp);
     });
 
-    xit('keeps defense in the range [0, 100]', function () {
+    it('keeps defense in the range [0, 100]', function () {
       character.defense = -10;
       expect(character.defense).toBe(0);
       character.defense = 200;
@@ -210,7 +210,7 @@ describe('Entities library', function () {
 
   });
 
-  xdescribe('Item type', function () {
+  describe('Item type', function () {
 
     it('allows to create generic items', function () {
       var item = new Item('testItem', new Effect({ hp: 5 }));
@@ -220,7 +220,7 @@ describe('Entities library', function () {
 
   });
 
-  xdescribe('Weapon type', function () {
+  describe('Weapon type', function () {
 
     it('is a subtype of Item', function () {
       expect(Weapon.prototype).toEqual(jasmine.any(Item));
@@ -242,7 +242,7 @@ describe('Entities library', function () {
 
   });
 
-  xdescribe('Scroll type', function () {
+  describe('Scroll type', function () {
 
     it('is a subtype of Item', function () {
       expect(Scroll.prototype).toEqual(jasmine.any(Item));
@@ -255,7 +255,7 @@ describe('Entities library', function () {
       expect(health.effect).toEqual(jasmine.any(Effect));
     });
 
-    xit('can test if a character can pay its cost.', function () {
+    it('can test if a character can pay its cost.', function () {
       var health = new Scroll('health', 5, new Effect({ hp: 5 }));
       expect(health.canBeUsed(10)).toBe(true);
       expect(health.canBeUsed(4)).toBe(false);
@@ -263,7 +263,7 @@ describe('Entities library', function () {
 
   });
 
-  xdescribe('Built-in entities', function () {
+  describe('Built-in entities', function () {
 
     it('includes characters and weapons.', function () {
       expect(entities.characters).toEqual(jasmine.any(Object));
@@ -271,7 +271,7 @@ describe('Entities library', function () {
       expect(entities.scrolls).toEqual(jasmine.any(Object));
     });
 
-    xdescribe('Characters', function () {
+    describe('Characters', function () {
 
       it('includes a tank.', function () {
         var character = entities.characters.heroTank;
@@ -350,7 +350,7 @@ describe('Entities library', function () {
 
     });
 
-    xdescribe('Weapons', function () {
+    describe('Weapons', function () {
 
       it('includes a sword.', function () {
         var weapon = entities.weapons.sword;
@@ -387,7 +387,7 @@ describe('Entities library', function () {
 
     });
 
-    xdescribe('Scrolls', function () {
+    describe('Scrolls', function () {
 
       it('includes health.', function () {
         var scroll = entities.scrolls.health;
