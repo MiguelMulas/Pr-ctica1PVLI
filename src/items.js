@@ -28,7 +28,13 @@ Scroll.prototype.canBeUsed = function (mp) {
 function Effect(variations) {
 
   this.hp = variations.hp;
+  this.maxHp = variations.maxHp;
   this.mp = variations.mp;
+  this.maxMp = variations.maxMp;
+  this.initiative = variations.initiative;
+  this.defense = variations.defense;
+  /*this.hp = variations.hp;
+  this.mp = variations.mp;*/
   // Copia las propiedades que se encuentran en variations como propiedades de
   // este objeto.
 }

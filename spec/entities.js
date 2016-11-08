@@ -119,7 +119,7 @@ describe('Entities library', function () {
       expect(character.isDead()).toBe(true);
     });
 
-    xdescribe('Effect application', function () {
+    describe('Effect application', function () {
 
       var variations;
       var effect;
@@ -136,7 +136,7 @@ describe('Entities library', function () {
         effect = new Effect(variations);
       });
 
-      xit('applies an effect if the effect comes from an ally.',
+      it('applies an effect if the effect comes from an ally.',
       function () {
         var isAlly = true;
 
@@ -147,7 +147,7 @@ describe('Entities library', function () {
         });
       });
 
-      xit('applies an effect if the effect comes from a foe and ' +
+      it('applies an effect if the effect comes from a foe and ' +
       'defense roll fails.',
       function () {
         var isAlly = false;
