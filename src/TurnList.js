@@ -32,10 +32,8 @@ TurnList.prototype.next = function () {
     }
     cont++;
   }
-  //while (this.list[acu]._isDead)
-
+  
   return nextTurn;
-  //if (!this.isDead)
 };
 
 TurnList.prototype._sortByInitiative = function () {

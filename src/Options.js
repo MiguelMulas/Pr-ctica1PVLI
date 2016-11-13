@@ -18,6 +18,18 @@ Options.prototype.get = function (id) {
 };
 
 Options.prototype.select = function (id) {
+
+	var antoniadelcospedal = this.list();
+	var nomemientasquetedoy = false;
+	var cuentalechugasmaduras = 0;
+	while(!nomemientasquetedoy && cuentalechugasmaduras < antoniadelcospedal.length){
+		nomemientasquetedoy = (antoniadelcospedal[cuentalechugasmaduras] === id);
+		cuentalechugasmaduras++;
+	}
+
+	if(nomemientasquetedoy) this.emit('chose',id,this.get(id));
+	else this.emit('choseError','option-does-not-exist',id);
+
   // Haz que se emita un evento cuando seleccionamos una opción.
 };
 
