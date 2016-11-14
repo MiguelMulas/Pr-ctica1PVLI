@@ -19,15 +19,15 @@ Options.prototype.get = function (id) {
 
 Options.prototype.select = function (id) {
 
-	var antoniadelcospedal = this.list();
-	var nomemientasquetedoy = false;
-	var cuentalechugasmaduras = 0;
-	while(!nomemientasquetedoy && cuentalechugasmaduras < antoniadelcospedal.length){
-		nomemientasquetedoy = (antoniadelcospedal[cuentalechugasmaduras] === id);
-		cuentalechugasmaduras++;
+	var list = this.list();
+	var cont = 0;
+	var centinela = false;
+	while(!centinela && cont < list.length){
+		centinela = (list[cont] === id);
+		cont++;
 	}
 
-	if(nomemientasquetedoy) this.emit('chose',id,this.get(id));
+	if(centinela) this.emit('chose',id,this.get(id));
 	else this.emit('choseError','option-does-not-exist',id);
 
   // Haz que se emita un evento cuando seleccionamos una opción.
