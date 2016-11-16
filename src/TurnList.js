@@ -19,7 +19,6 @@ TurnList.prototype.next = function () {
   this.turnNumber++;
   var cont = 0;
   var flag = true;
-  //var self = this;
 
   while (flag && cont < this.list.length){
     if (!this._charactersById[this.list[cont]]._isDead){

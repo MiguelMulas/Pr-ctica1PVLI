@@ -20,8 +20,8 @@ Options.prototype.get = function (id) {
 Options.prototype.select = function (id) {
 
 	var list = this.list();
-	var cont = 0;
 	var centinela = false;
+	var cont = 0;
 	while(!centinela && cont < list.length){
 		centinela = (list[cont] === id);
 		cont++;

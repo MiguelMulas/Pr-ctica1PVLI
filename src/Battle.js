@@ -82,12 +82,24 @@ Battle.prototype._extractCharactersById = function (parties) {
 
   function assignParty(characters, party) {
     // Cambia la party de todos los personajes a la pasada como parámetro.
+    for ( var o in characters) {
+      characters[o].party = party;
+    }
+    return characters;
   }
 
   function useUniqueName(character) {
     // Genera nombres únicos de acuerdo a las reglas
     // de generación de identificadores que encontrarás en
     // la descripción de la práctica o en la especificación.
+    if (!idCounters.hasOwnProperty(character.name)){
+      idCounters[character.name] = 0;
+      return character.name;
+    }
+    else{
+      ++idCounters[character.name];
+      return character.name + ' ' + (idCounters[character.name] + 1);
+    }
   }
 };
 
