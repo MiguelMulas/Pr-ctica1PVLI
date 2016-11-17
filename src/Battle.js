@@ -153,7 +153,7 @@ Battle.prototype._checkEndOfBattle = function () {
     // de que no haya común.
     var party = characters[0].party;
     var sigue = true;
-    var cont = 0;
+    var cont = 1;
     while (cont < characters.length && sigue){
       if (characters[cont].party !== party)
         sigue = false;
@@ -233,7 +233,7 @@ Battle.prototype._cast = function () {
     self._charactersById[self._turns.activeCharacterId].mp -= scroll.cost;
     self._showTargets(function onTarget(targetId){
         self._action.targetId = targetId;
-        self._action.scrollId = scrollId;
+        self._action.scrollName = scrollId;
         self._action.effect = scroll.effect;
         self._executeAction();
         self._restoreDefense(targetId);

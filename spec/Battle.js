@@ -628,7 +628,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('doesn\'t apply weapon effect if defense roll passes.',
+      it('doesn\'t apply weapon effect if defense roll passes.',
       function (done) {
         fakeD100 = 1;
         var enemyHealth = fastEnemy.hp;
@@ -656,7 +656,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('always applies weapon effect if the attack comes from an ally.',
+      it('always applies weapon effect if the attack comes from an ally.',
       function (done) {
         heroTank.defense = 100;
         fakeD100 = 1;
@@ -687,7 +687,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('can be cancelled.', function (done) {
+      it('can be cancelled.', function (done) {
         battle.on('turn', function () {
           this.options.select('attack');
           this.options.cancel();
@@ -702,7 +702,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('can go back to scroll selection.', function (done) {
+      it('can go back to scroll selection.', function (done) {
         battle.on('turn', function () {
           this.options.select('cast');
           this.options.select('Health');
@@ -717,7 +717,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('informs after casting on an ally.', function (done) {
+      it('informs after casting on an ally.', function (done) {
         battle.on('turn', function (turn) {
           if (turn.number === 3) {
             this.on('info', function (info) {
@@ -740,7 +740,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('informs after casting on a foe failing the defense roll.',
+      it('informs after casting on a foe failing the defense roll.',
       function (done) {
         fakeD100 = 100;
         battle.on('turn', function (turn) {
@@ -766,7 +766,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('informs after casting on a foe passing the defense roll.',
+      it('informs after casting on a foe passing the defense roll.',
       function (done) {
         fakeD100 = 1;
         battle.on('turn', function (turn) {
@@ -796,7 +796,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Some battles', function () {
+  describe('Some battles', function () {
 
     it('are won by heroes.', function (done) {
       heroTank.defense = 0;
@@ -829,7 +829,7 @@ describe('Battle type', function () {
       battle.start();
     });
 
-    it('are won by monsters.', function (done) {
+    xit('are won by monsters.', function (done) {
       heroTank.defense = 0;
       heroWizard.defense = 0;
       battle.setup(currentSetup);
