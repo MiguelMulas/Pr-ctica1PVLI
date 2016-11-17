@@ -78,7 +78,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Turn list', function () {
+  describe('Turn list', function () {
 
     it('includes all the characters sorted by initiative.', function (done) {
       var sortedByInitiative = ['Fasty', 'Tank', 'Wizz'];
@@ -110,7 +110,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Turns', function () {
+  describe('Turns', function () {
 
     it('include relevant info.', function (done) {
       battle.on('turn', function (turn) {
@@ -153,7 +153,7 @@ describe('Battle type', function () {
 
   });
 
-  xdescribe('Battle actions', function () {
+  describe('Battle actions', function () {
 
     it('are 3: attack, defend and cast.', function () {
       battle.on('turn', function () {
@@ -167,7 +167,7 @@ describe('Battle type', function () {
       battle.start();
     });
 
-    xdescribe('Defend action', function () {
+    describe('Defend action', function () {
 
       it('informs of the result.', function (done) {
         var currentDefense = fastEnemy.defense;
@@ -189,7 +189,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      it('increases defense feature by 10%.', function (done) {
+      xit('increases defense feature by 10%.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -209,7 +209,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      it('increases the odds of defending against attack.', function (done) {
+      xit('increases the odds of defending against attack.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -234,7 +234,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      it('increases the odds of defending against cast.', function (done) {
+      xit('increases the odds of defending against cast.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -263,7 +263,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      it('accumulates turn by turn.', function (done) {
+      xit('accumulates turn by turn.', function (done) {
         var currentDefense = fastEnemy.defense;
         var expectedDefense =
             Math.ceil(Math.ceil(currentDefense * 1.1) * 1.1);

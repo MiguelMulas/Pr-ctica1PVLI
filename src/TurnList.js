@@ -21,7 +21,7 @@ TurnList.prototype.next = function () {
   var flag = true;
 
   while (flag && cont < this.list.length){
-    if (!this._charactersById[this.list[cont]]._isDead){
+    if (!this._charactersById[this.list[cont]].isDead()){
       nextTurn.number = this.turnNumber;
       this.activeCharacterId = this.list[cont];
       nextTurn.activeCharacterId = this.list[cont];

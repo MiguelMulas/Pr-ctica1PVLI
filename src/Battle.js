@@ -145,11 +145,23 @@ Battle.prototype._checkEndOfBattle = function () {
 
   function isAlive(character) {
     // Devuelve true si el personaje está vivo.
+    return !character.isDead();
   }
 
   function getCommonParty(characters) {
     // Devuelve la party que todos los personajes tienen en común o null en caso
     // de que no haya común.
+    var party = characters[0].party;
+    var sigue = true;
+    var cont = 0;
+    while (cont < characters.length && sigue){
+      if (characters[cont].party !== party)
+        sigue = false;
+      ++cont;
+    }
+    if (sigue)
+      return party;
+    else return null;
   }
 };
 
@@ -167,8 +179,11 @@ Battle.prototype._onAction = function (action) {
     action: action,
     activeCharacterId: this._turns.activeCharacterId
   };
+  if (this._action.action === 'defend') return this._defend();
   // Debe llamar al método para la acción correspondiente:
   // defend -> _defend; attack -> _attack; cast -> _cast
+  else if (this._action.action === 'attack') return this._attack();
+  else if (this._action.action === 'cast') return this._cast();
 };
 
 Battle.prototype._defend = function () {
@@ -182,12 +197,16 @@ Battle.prototype._defend = function () {
 Battle.prototype._improveDefense = function (targetId) {
   var states = this._states[targetId];
   // Implementa la mejora de la defensa del personaje.
+  // console.log ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWW', this._charactersById[targetId].defense * 1.1);
+  this._states[targetId] = this._charactersById[targetId].defense;
+  return this._charactersById[targetId].defense * 1.1;
 };
 
 Battle.prototype._restoreDefense = function (targetId) {
   // Restaura la defensa del personaje a cómo estaba antes de mejorarla.
   // Puedes utilizar el atributo this._states[targetId] para llevar tracking
   // de las defensas originales.
+  this._charactersById[targetId].defense = this._states[targetId];
 };
 
 Battle.prototype._attack = function () {
@@ -227,8 +246,12 @@ Battle.prototype._informAction = function () {
 Battle.prototype._showTargets = function (onSelection) {
   // Toma ejemplo de la función ._showActions() para mostrar los identificadores
   // de los objetivos.
-
-  this.options.current.on('chose', onSelection);
+  /*this.options.current = {
+    'cast': true
+    for (var i in this.)
+  };
+  this.options.current.on('chose', onSelection);*/
+  //console.log ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWW2', this);
 };
 
 Battle.prototype._showScrolls = function (onSelection) {
