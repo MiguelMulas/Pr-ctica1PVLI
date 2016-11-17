@@ -198,8 +198,12 @@ Battle.prototype._improveDefense = function (targetId) {
   var states = this._states[targetId];
   // Implementa la mejora de la defensa del personaje.
   // console.log ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWW', this._charactersById[targetId].defense * 1.1);
-  this._states[targetId] = this._charactersById[targetId].defense;
-  return this._charactersById[targetId].defense * 1.1;
+  if(Object.keys(states).length ===0){
+  	this._states[targetId] = this._charactersById[targetId].defense;
+  }
+  var improve = Math.ceil(this._states[targetId] * 0.1);
+  this._charactersById[targetId].defense += improve;
+  return this._charactersById[targetId].defense;
 };
 
 Battle.prototype._restoreDefense = function (targetId) {
@@ -213,6 +217,7 @@ Battle.prototype._attack = function () {
   var self = this;
   self._showTargets(function onTarget(targetId) {
     // Implementa lo que pasa cuando se ha seleccionado el objetivo.
+    self._action.targetId = targetId;
     self._executeAction();
     self._restoreDefense(targetId);
   });
@@ -222,6 +227,16 @@ Battle.prototype._cast = function () {
   var self = this;
   self._showScrolls(function onScroll(scrollId, scroll) {
     // Implementa lo que pasa cuando se ha seleccionado el hechizo.
+    var party = self._charactersById[self._turns.activeCharacter].party;
+    scroll = self._grimoires[party][scrollId];
+    self._charactersById[self._turns.activeCharacterId].mp -= scroll.cost;
+    self._showTargets(function onTarget(targetId){
+    	self._action.targetId = targetId;
+    	self._action.scrollId = scrollId;
+    	self._action.effect = scroll.effect;
+    	self._executeAction();
+
+    })
   });
 };
 
@@ -246,17 +261,30 @@ Battle.prototype._informAction = function () {
 Battle.prototype._showTargets = function (onSelection) {
   // Toma ejemplo de la función ._showActions() para mostrar los identificadores
   // de los objetivos.
-  /*this.options.current = {
-    'cast': true
-    for (var i in this.)
-  };
-  this.options.current.on('chose', onSelection);*/
+  var personaje = {};
+  for (var i in this._charactersById){
+  	if(!this._charactersById[i].isDead()){
+  		personaje[i] = i;
+  	}
+  }
+  this.options.current = personaje;
+  this.options.current.on('chose', onSelection);
   //console.log ('WWWWWWWWWWWWWWWWWWWWWWWWWWWWW2', this);
 };
 
 Battle.prototype._showScrolls = function (onSelection) {
   // Toma ejemplo de la función anterior para mostrar los hechizos. Estudia
   // bien qué parámetros se envían a los listener del evento chose.
+  var hechizos = {};
+  var h = this._grimoires[this._charactersById[this._action.activeCharacterId].party];
+  var cont = 0;
+  for(var i in h){
+  	if (h[i].canBeUsed(this._charactersById[this._turns.activeCharacterId].mp)){
+  		hechizos[cont] = h[i];
+  		++cont;
+  	}
+  }
+  this.options.current = Object.keys (hechizos);
   this.options.current.on('chose', onSelection);
 };
 

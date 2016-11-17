@@ -189,7 +189,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('increases defense feature by 10%.', function (done) {
+      it('increases defense feature by 10%.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -209,7 +209,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('increases the odds of defending against attack.', function (done) {
+      it('increases the odds of defending against attack.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -234,7 +234,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('increases the odds of defending against cast.', function (done) {
+      it('increases the odds of defending against cast.', function (done) {
         var currentDefense = fastEnemy.defense;
         fakeD100 = currentDefense + 1;
         var expectedDefense = Math.ceil(currentDefense * 1.1);
@@ -263,7 +263,7 @@ describe('Battle type', function () {
         battle.start();
       });
 
-      xit('accumulates turn by turn.', function (done) {
+      it('accumulates turn by turn.', function (done) {
         var currentDefense = fastEnemy.defense;
         var expectedDefense =
             Math.ceil(Math.ceil(currentDefense * 1.1) * 1.1);
