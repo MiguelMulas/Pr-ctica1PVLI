@@ -6,11 +6,11 @@ function Item(name, effect) {
 }
 
 function Weapon(name, damage, extraEffect) {
-  extraEffect = extraEffect || new Effect({});
+  this.extraEffect = extraEffect || new Effect({});
   // Haz que Weapon sea subtipo de Item haciendo que llame al constructor de
   // de Item.
-  extraEffect.hp -= damage;
-  Item.call(this, name, extraEffect);
+  this.extraEffect.hp -= damage;
+  Item.call(this, name, this.extraEffect);
 }
 // Termina de implementar la herencia haciendo que la propiedad prototype de
 // Item sea el prototipo de Weapon.prototype y recuerda ajustar el constructor.
@@ -24,10 +24,7 @@ Scroll.prototype = Object.create(Item.prototype);
 Scroll.prototype.constructor = Scroll;
 
 Scroll.prototype.canBeUsed = function(mp) {
-  if (mp > this.cost)
-    return true;
-  else
-    return false;
+    return (mp >= this.cost);
   // El pergamino puede usarse si los puntos de maná son superiores o iguales
   // al coste del hechizo.
 };
